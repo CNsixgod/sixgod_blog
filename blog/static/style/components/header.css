@@ -1,0 +1,35 @@
+.sixgod_txt {
+  display: inline-block;
+  font-size: .6rem;
+  color: #999;
+  padding-left: .3rem;
+}
+
+.sixgod_header {
+  background-color: #fff;
+  padding: .4rem;
+  overflow: hidden;
+  height: 3.2rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.sixgod_logo {
+  color: #1e90ff;
+  font-size: 1.4rem;
+  text-align: left;
+}
+
+.ant-menu {
+  line-height: 2.8em;
+}
+
+.ant-menu-item {
+  font-size: .7rem !important;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-width: 0px !important;
+}
+
+.ant-menu-horizontal {
+  border-width: 0px;
+}
