@@ -7,8 +7,8 @@ import AdminIndex from './AdminIndex'
 export default () => {
   return (
     <Router>
-      <Route path="/login/" exact component={Login} />
-      <Route path="/index/" exact component={AdminIndex} />
+      <Route path="/" exact component={Login} />
+      <Route path="/index/"  component={AdminIndex} />
     </Router>
   )
 }

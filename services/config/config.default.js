@@ -24,7 +24,8 @@ module.exports = appInfo => {
     domainWhiteList: [ '*' ],
   };
   config.cors = {
-    origin: '*',
+    origin: 'http://localhost:7007',
+    credentials: true, // 允许cookie跨域
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
   };
 
@@ -52,6 +53,14 @@ module.exports = appInfo => {
   const userConfig = {
     // myAppName: 'egg',
   };
+
+  // config.cluster = {
+  //   listen: {
+  //     path: '',
+  //     port: 7005,
+  //     hostname: '127.0.0.1',
+  //   },
+  // };
 
   return {
     ...config,

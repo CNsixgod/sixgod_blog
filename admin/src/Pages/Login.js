@@ -1,19 +1,50 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css'
-import { Card, Input, Icon, Button, Spin } from 'antd'
+import { Card, Input, Icon, Button, Spin, message } from 'antd'
+import service from '../config/apiUrl'
+import axios from 'axios'
+import qs from 'qs'
 
 import '../static/css/Login.css';
 
-export default () => {
+export default (props) => {
 
+  // axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded'
   const [userName, setUserName] = useState('')
   const [passwd, setPasswd] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const { history, location, match } = props
   const checkLogin = () => {
     setIsLoading(true)
-    setTimeout(() => {
+    if(!userName) {
+      message.error('用户名不能为空') && setIsLoading(false)
+      return false
+    } else if(!passwd) {
+      message.error('密码不能为空') && setIsLoading(false)
+      return false
+    }
+    let ReqData = {
+      userName,
+      password: passwd
+    }
+
+    axios({
+      method: 'post',
+      url: service.checkLogin,
+      data: ReqData,
+      withCredentials: true   // 前后端共享session  证书
+    }).then(res => {
       setIsLoading(false)
-    },1000)
+      if(res.data.code !== 100) {
+        message.error(res.data.data)
+        return false
+      }
+      localStorage.setItem('openId', res.data.openId)
+      history.push('/index')
+    }).catch(err => {
+      setIsLoading(false)
+      message.error(err)
+    })
   }
 
   return (

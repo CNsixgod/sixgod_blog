@@ -4,21 +4,29 @@ import "../static/css/AdminIndex.css";
 import { Route } from "react-router-dom";
 
 import AddArticle from "./AddArticle";
+import ArticleList from './ArticleList'
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
-export default () => {
+
+
+export default (props) => {
   const [collapsed, setCollapsed] = useState(false); // 左边合起来或是闭
 
-  const onCollapse = collapsed => {
-    console.log(collapsed);
-    this.setState({ collapsed });
-  };
+  const handleClickArticle = e=>{
+    console.log(e.item.props)
+    if(e.key=='addArticle'){
+      props.history.push('/index/add')
+    }else{
+      props.history.push('/index/list')
+    }
+  
+  }
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+      <Sider collapsible collapsed={collapsed} onCollapse={ collapsed => setCollapsed(collapsed)} >
         <div className="logo" />
         <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
           <Menu.Item key="1">
@@ -30,6 +38,7 @@ export default () => {
             <span>添加文章</span>
           </Menu.Item>
           <SubMenu
+            onClick={handleClickArticle}
             key="sub1"
             title={
               <span>
@@ -38,7 +47,7 @@ export default () => {
               </span>
             }
           >
-            <Menu.Item key="3">添加文章</Menu.Item>
+            <Menu.Item key="addArticle">添加文章</Menu.Item>
             <Menu.Item key="4">文章列表</Menu.Item>
           </SubMenu>
 
@@ -58,6 +67,8 @@ export default () => {
           <div style={{ padding: 24, background: "#fff", minHeight: 360 }}>
             <div>
               <Route path="/index/" exact component={AddArticle} />
+              <Route path="/index/add" exact component={AddArticle} />
+              <Route path="/index/list" exact component={ArticleList} />
             </div>
           </div>
         </Content>

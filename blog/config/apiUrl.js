@@ -1,4 +1,4 @@
-const baseUrl = 'http://127.0.0.1:7003/default/'
+const baseUrl = 'http://127.0.0.1:7005/default/'
 
 export default {
   getArticleList: baseUrl + 'getArticleList' ,  //  首页文章列表接口
